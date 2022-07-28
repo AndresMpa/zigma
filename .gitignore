@@ -41,6 +41,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+postgres_data/
+postgres_data/
 
 # TypeScript v1 declaration files
 typings/
