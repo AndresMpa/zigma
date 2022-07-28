@@ -4,7 +4,8 @@
   "description": "A nodejs ecosystem thought to be IoT",
   "main": "index.js",
   "scripts": {
-    "test": "DEBUG=zigma:* jest --verbose --coverage",
+    "test_coverage": "DEBUG=zigma:* jest --verbose --coverage",
+    "test": "DEBUG=zigma:* jest --verbose",
     "setup": "DEBUG=zigma:* node setup.js",
     "lint": "eslint"
   },
