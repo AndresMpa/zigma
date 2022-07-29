@@ -43,6 +43,17 @@ describe('[SETUP]', () => {
 });
 
 describe('[AGENT SERVICE]', () => {
+  describe('[Find all agents]', () => {
+    test('findAll should be called once', async () => {
+      await db.Agent.findAll();
+      expect(mockAgentModel.findAll).toBeCalledTimes(1);
+    });
+    test('findAll should be called without args', async () => {
+      await db.Agent.findAll();
+      expect(mockAgentModel.findAll).toBeCalledWith();
+    });
+  });
+
   describe('[Find agent by ID]', () => {
     test('Function findById should be called once', async () => {
       await db.Agent.findById(single.id);
@@ -55,6 +66,45 @@ describe('[AGENT SERVICE]', () => {
     test('Function output should be exactly the same', async () => {
       const agent = await mockAgent.findById(single.id);
       expect(agent).toEqual(fixtureAgent.byId(single.id));
+    });
+  });
+
+  describe('[Find agent by UUID]', () => {
+    test('findOne should be called once', async () => {
+      await db.Agent.findByUuid(single.uuid);
+      expect(mockAgentModel.findOne).toBeCalledTimes(1);
+    });
+    test('findOne should be called with filter object with uuid as arg', async () => {
+      await db.Agent.findByUuid(single.uuid);
+      expect(mockAgentModel.findOne).toBeCalledWith({
+        where: { uuid: single.uuid },
+      });
+    });
+  });
+
+  describe('[Find agent by username]', () => {
+    test('findAll should be called once', async () => {
+      await db.Agent.findByUsername(single.username);
+      expect(mockAgentModel.findAll).toBeCalledTimes(1);
+    });
+    test('findAll should be called with username and connected filter', async () => {
+      await db.Agent.findByUsername(single.username);
+      expect(mockAgentModel.findAll).toBeCalledWith({
+        where: { username: single.username, connected: true },
+      });
+    });
+  });
+
+  describe('[Find agend by connection status]', () => {
+    test('findAll should be called once', async () => {
+      await db.Agent.findByConnected();
+      expect(mockAgentModel.findAll).toBeCalledTimes(1);
+    });
+    test('findAll should be called with connected filter', async () => {
+      await db.Agent.findByConnected();
+      expect(mockAgentModel.findAll).toBeCalledWith({
+        where: { connected: true },
+      });
     });
   });
 
