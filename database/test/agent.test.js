@@ -3,6 +3,7 @@ const { mockAgent, mockMetric } = require('./mocks');
 const { fixtureAgent } = require('./fixtures');
 // Globals
 let single = { ...fixtureAgent.single };
+let newSingle = fixtureAgent.getASample;
 let config = { logging: function () {} };
 let db = null;
 
@@ -23,7 +24,7 @@ afterEach(() => {
 });
 
 // Test
-describe('Setup', () => {
+describe('[SETUP]', () => {
   test('The agent should exists', () => {
     expect(db.Agent).toBeDefined();
   });
@@ -41,19 +42,45 @@ describe('Setup', () => {
   });
 });
 
-describe('Agent service', () => {
-  describe('FindById feature', () => {
-    test('Function should be called once', async () => {
+describe('[AGENT SERVICE]', () => {
+  describe('[Find agent by ID]', () => {
+    test('Function findById should be called once', async () => {
       await db.Agent.findById(single.id);
       expect(mockAgent.findById).toBeCalledTimes(1);
     });
-    test('Function should be called with the same id', async () => {
+    test('Function findById should be called with the same id', async () => {
       await db.Agent.findById(single.id);
       expect(mockAgent.findById).toBeCalledWith(single.id);
     });
-    test('Function should be exactly the same', async () => {
+    test('Function output should be exactly the same', async () => {
       const agent = await mockAgent.findById(single.id);
       expect(agent).toEqual(fixtureAgent.byId(single.id));
+    });
+  });
+
+  describe('[Update and agent]', () => {
+    test('findOne should be called twice', async () => {
+      await db.Agent.createOrUpdate(single);
+      expect(mockAgent.findOne).toBeCalledTimes(2);
+    });
+    test('update function should be called once', async () => {
+      await db.Agent.createOrUpdate(single);
+      expect(mockAgent.update).toBeCalledTimes(1);
+    });
+  });
+
+  describe('[Create and agent]', () => {
+    test('findOne function should be called once', async () => {
+      await db.Agent.createOrUpdate(newSingle);
+      expect(mockAgent.findOne).toBeCalledTimes(1);
+    });
+    test('create function should be called once', async () => {
+      await db.Agent.createOrUpdate(newSingle);
+      expect(mockAgent.create).toBeCalledTimes(1);
+    });
+    test("update function shouldn't be called", async () => {
+      await db.Agent.createOrUpdate(newSingle);
+      expect(mockAgent.update).toBeCalledTimes(0);
     });
   });
 });
