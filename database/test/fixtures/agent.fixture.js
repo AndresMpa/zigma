@@ -35,4 +35,11 @@ module.exports = {
   findOne: (username) => agents.filter((agent) => agent.username === username),
   byUuid: (uuid) => agents.find((agent) => agent.uuid === uuid),
   byId: (id) => agents.find((agent) => agent.id === id),
+  getASample: () => {
+    return {
+      ...agent,
+      id: 8,
+      uuid: 'samp-leno-twoo',
+    };
+  },
 };
