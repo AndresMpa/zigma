@@ -108,7 +108,7 @@ describe('[AGENT SERVICE]', () => {
     });
   });
 
-  describe('[Update and agent]', () => {
+  describe('[Update an agent]', () => {
     test('findOne should be called twice', async () => {
       await db.Agent.createOrUpdate(single);
       expect(mockAgent.findOne).toBeCalledTimes(2);
@@ -119,7 +119,7 @@ describe('[AGENT SERVICE]', () => {
     });
   });
 
-  describe('[Create and agent]', () => {
+  describe('[Create an agent]', () => {
     test('findOne function should be called once', async () => {
       await db.Agent.createOrUpdate(newSingle);
       expect(mockAgent.findOne).toBeCalledTimes(1);
