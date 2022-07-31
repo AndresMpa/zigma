@@ -26,6 +26,27 @@ const agents = [
     name: 'Snorlax',
     username: 'Sleepy',
   },
+  {
+    ...agent,
+    id: 4,
+    uuid: 'wer-fas-fzx',
+    name: 'Mr. X',
+    username: 'Mr. X',
+  },
+  {
+    ...agent,
+    id: 5,
+    uuid: 'asd-cwk-ppy',
+    name: 'Jhon Smow',
+    username: 'Snowman',
+  },
+  {
+    ...agent,
+    id: 6,
+    uuid: 'lra-zke-lmo',
+    name: 'Carlo Mangnanimo',
+    username: 'MagnoXVI',
+  },
 ];
 
 module.exports = {
@@ -39,7 +60,9 @@ module.exports = {
     return {
       ...agent,
       id: 8,
+      name: 'pas damour familier',
       uuid: 'samp-leno-twoo',
+      username: 'MagnoXVI',
     };
   },
 };
