@@ -1,0 +1,40 @@
+{
+  "name": "zigma-mqtt",
+  "version": "1.0.0",
+  "description": "MQTT server module",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "dev": "DEBUG=zigma:* nodemon index.js",
+    "lint": "eslint"
+  },
+  "keywords": [
+    "iot",
+    "mqtt",
+    "nodejs",
+    "server",
+    "monorepo",
+    "javascript"
+  ],
+  "author": "AndresMpa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndresMpa/zigma/issues"
+  },
+  "homepage": "https://github.com/AndresMpa/zigma#readme",
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "aedes": "^0.47.0",
+    "aedes-persistence-redis": "^9.0.1",
+    "debug": "^4.3.4",
+    "mqemitter-redis": "^5.0.0",
+    "redis": "^4.2.0"
+  }
+}
