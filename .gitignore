@@ -39,9 +39,9 @@ bower_components
 build/Release
 
 # Dependency directories
+redis_data/
 node_modules/
 jspm_packages/
-postgres_data/
 postgres_data/
 
 # TypeScript v1 declaration files
