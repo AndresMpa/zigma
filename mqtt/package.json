@@ -4,8 +4,9 @@
   "description": "MQTT server module",
   "main": "index.js",
   "scripts": {
+    "test": "npx mqtt publish -t 'agent/message' -h 'localhost' -m 'testing'",
     "start": "NODE_ENV=production node index.js",
-    "dev": "DEBUG=zigma:* nodemon index.js",
+    "dev": "DEBUG=zigma:* npx nodemon index.js",
     "lint": "eslint"
   },
   "keywords": [
@@ -27,6 +28,7 @@
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "mqtt": "^4.3.7",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
   },
@@ -34,6 +36,7 @@
     "aedes": "^0.47.0",
     "aedes-persistence-redis": "^9.0.1",
     "debug": "^4.3.4",
+    "dotenv": "^16.0.1",
     "mqemitter-redis": "^5.0.0",
     "redis": "^4.2.0"
   }
