@@ -1,4 +1,6 @@
 const debug = require('debug')('zigma:databse:setup');
+const { handleFatalError } = require('./util');
+const { config } = require('./config');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const database = require('./');
@@ -20,27 +22,17 @@ async function setup() {
     return console.log(`${chalk.blue('[CANCELLED]:')} Script did not continue`);
   }
 
-  const config = {
-    database: process.env.DB_NAME || 'zigma',
-    username: process.env.DB_USER || 'admin',
-    password: process.env.DB_PASS || 'admin123',
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'postgres',
+  const dBConfig = {
+    ...config.db,
     setup: true,
 
     logging: (status) => debug(status),
   };
 
-  await database(config).catch(handleFatalError);
+  await database(dBConfig).catch(handleFatalError);
 
   console.log(`${chalk.green('[DATA BASE]')}: Created successfully!`);
   process.exit(0);
-}
-
-function handleFatalError(error) {
-  console.error(`${chalk.red('[FATAL ERROR]')} ${error.message}`);
-  console.error(error.stack);
-  process.exit(1);
 }
 
 setup();
